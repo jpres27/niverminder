@@ -1,5 +1,5 @@
 //
-//  Onboarding1
+//  OnboardingAlt3a
 //  Onboarding-screens-vreedi 25-Jun-2021-125436
 //
 //  Created by [Author].
@@ -10,7 +10,7 @@ import React from "react"
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native"
 
 
-export default class Onboarding1 extends React.Component {
+export default class About extends React.Component {
 
 	constructor(props) {
 		super(props)
@@ -23,7 +23,10 @@ export default class Onboarding1 extends React.Component {
 	render() {
 
 		return <View
-			style={styles.onboarding1View}>
+			style={styles.aboutView}
+			onTouchStart={() => this.props.navigation.navigate('Birthdays')}
+
+			>
 			<View
 				pointerEvents="box-none"
 				style={{
@@ -35,81 +38,68 @@ export default class Onboarding1 extends React.Component {
 					justifyContent: "center",
 				}}>
 				<Image
-					source={require("./../../assets/images/onboarding-1-background-mask.png")}
-					style={styles.onboarding1BackgroundMaskImage} />
+					source={require("./../../assets/images/onboarding-alt-3a-background-mask.png")}
+					style={styles.aboutBackgroundMaskImage} />
 			</View>
 			<View
 				pointerEvents="box-none"
 				style={{
 					position: "absolute",
-					left: 16,
-					right: 10,
-					top: 376,
-					bottom: 125,
-					alignItems: "center",
+					left: 19,
+					right: 13,
+					top: 378,
+					height: 99,
 				}}>
 				<Text
-					style={styles.findRestaurantFavoText}>Add Birthday Info to Your Contacts</Text>
+					style={styles.flavorText}>What We Do?</Text>
 				<Text
-					style={styles.loremIpsumIsSimplText}>NiverMinder gathers information from your contacts to send each of them your best wishes</Text>
-				<View
-					style={{
-						flex: 1,
-					}} />
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => this.props.navigation.navigate('Details')}
-				>
-					<Text
-						style={styles.findBestPlaceText}>GO TO CONTACTS</Text>
-				</TouchableOpacity>
+					style={styles.simpleText}>NiverMinder will send a birthday message to everyone with a filled  birthday field in you contacts list</Text>
 			</View>
+
 		</View>
 	}
 }
 
 const styles = StyleSheet.create({
-	onboarding1View: {
+	aboutView: {
 		backgroundColor: "white",
 		flex: 1,
 	},
-	onboarding1BackgroundMaskImage: {
-		backgroundColor: "transparent",
+	aboutBackgroundMaskImage: {
 		resizeMode: "cover",
+		backgroundColor: "transparent",
 		width: null,
 		height: 640,
 	},
-	findRestaurantFavoText: {
-		backgroundColor: "transparent",
+	flavorText: {
 		color: "rgb(41, 41, 41)",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 18,
 		fontStyle: "normal",
 		fontWeight: "normal",
 		textAlign: "center",
-		alignSelf: "flex-end",
-		marginTop: 20,
-		marginRight: 31,
+		backgroundColor: "transparent",
+		alignSelf: "center",
+		flex: 1,
+		justifyContent: 'flex-end',
 	},
-	loremIpsumIsSimplText: {
+	simpleText: {
+		backgroundColor: "transparent",
 		color: "rgb(41, 41, 41)",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "normal",
 		textAlign: "center",
 		lineHeight: 24,
-		backgroundColor: "transparent",
-		alignSelf: "stretch",
 		marginTop: 6,
+		flex: 1,
+		justifyContent: 'flex-end',
 	},
 	findBestPlaceText: {
 		backgroundColor: "transparent",
 		color: "white",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "normal",
 		textAlign: "center",
-	},
+	}
 })

@@ -1,5 +1,5 @@
 //
-//  OnboardingAlt1a
+//  Onboarding3
 //  Onboarding-screens-vreedi 25-Jun-2021-125436
 //
 //  Created by [Author].
@@ -10,7 +10,7 @@ import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 
 
-export default class OnboardingAlt1a extends React.Component {
+export default class Enjoy extends React.Component {
 
 	static navigationOptions = ({ navigation }) => {
 	
@@ -33,7 +33,7 @@ export default class OnboardingAlt1a extends React.Component {
 	render() {
 	
 		return <View
-				style={styles.onboardingAlt1aView}>
+				style={styles.onboarding3View}>
 				<View
 					pointerEvents="box-none"
 					style={{
@@ -45,56 +45,39 @@ export default class OnboardingAlt1a extends React.Component {
 						justifyContent: "center",
 					}}>
 					<Image
-						source={require("./../../assets/images/onboarding-alt-1a-background-mask.png")}
-						style={styles.onboardingAlt1aBackgroundMaskImage}/>
+						source={require("./../../assets/images/onboarding-3-background-mask.png")}
+						style={styles.onboarding3BackgroundMaskImage}/>
 				</View>
 				<View
 					pointerEvents="box-none"
 					style={{
 						position: "absolute",
-						left: 41,
-						right: 27,
-						top: 114,
-						bottom: 75,
-						alignItems: "flex-end",
+						left: 15,
+						right: 17,
+						top: 396,
+						height: 71,
 					}}>
 					<Text
-						style={styles.miderText}>Mider</Text>
-					<View
-						style={{
-							flex: 1,
-						}}/>
+						style={styles.findCafeFavoriteText}>Enjoy</Text>
 					<Text
-						style={styles.findRestaurantFavoText}>Remember Special People{"\n"}on Their Special Day</Text>
-					<Text
-						style={styles.loremIpsumIsSimplText}>Your friends deserve to be remembered</Text>
+						style={styles.loremIpsumIsSimplText}>Enjoy the peace of mind of never forgetting another friend’s birthday in your life</Text>
 				</View>
 			</View>
 	}
 }
 
 const styles = StyleSheet.create({
-	onboardingAlt1aView: {
+	onboarding3View: {
 		backgroundColor: "white",
 		flex: 1,
 	},
-	onboardingAlt1aBackgroundMaskImage: {
-		backgroundColor: "transparent",
+	onboarding3BackgroundMaskImage: {
 		resizeMode: "cover",
+		backgroundColor: "transparent",
 		width: null,
 		height: 640,
 	},
-	miderText: {
-		color: "black",
-		fontFamily: ".AppleSystemUIFont",
-		fontSize: 80,
-		fontStyle: "normal",
-		fontWeight: "normal",
-		textAlign: "center",
-		backgroundColor: "transparent",
-		width: 127,
-	},
-	findRestaurantFavoText: {
+	findCafeFavoriteText: {
 		color: "rgb(41, 41, 41)",
 		fontFamily: ".AppleSystemUIFont",
 		fontSize: 18,
@@ -102,8 +85,7 @@ const styles = StyleSheet.create({
 		fontWeight: "normal",
 		textAlign: "center",
 		backgroundColor: "transparent",
-		marginRight: 47,
-		marginBottom: 23,
+		alignSelf: "center",
 	},
 	loremIpsumIsSimplText: {
 		color: "rgb(41, 41, 41)",
@@ -114,7 +96,6 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		lineHeight: 24,
 		backgroundColor: "transparent",
-		alignSelf: "stretch",
-		marginRight: 8,
+		marginTop: 2,
 	},
 })

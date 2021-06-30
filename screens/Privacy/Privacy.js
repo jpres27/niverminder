@@ -10,7 +10,7 @@ import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 
 
-export default class OnboardingAlt2a extends React.Component {
+export default class Privacy extends React.Component {
 
 	static navigationOptions = ({ navigation }) => {
 	

@@ -10,7 +10,7 @@ import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 
 
-export default class Onboarding2 extends React.Component {
+export default class Names extends React.Component {
 
 	constructor(props) {
 		super(props)
