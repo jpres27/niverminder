@@ -23,7 +23,9 @@ export default class Birthdays extends React.Component {
 	render() {
 
 		return <View
-			style={styles.birthdaysView}>
+			style={styles.birthdaysView}
+			onTouchStart={() => this.props.navigation.navigate('Names')}
+			>
 			<View
 				pointerEvents="box-none"
 				style={{

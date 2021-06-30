@@ -23,7 +23,9 @@ export default class Names extends React.Component {
 	render() {
 	
 		return <View
-				style={styles.onboarding2View}>
+				style={styles.onboarding2View}
+				onTouchStart={() => this.props.navigation.navigate('Enjoy')}
+				>
 				<View
 					pointerEvents="box-none"
 					style={{

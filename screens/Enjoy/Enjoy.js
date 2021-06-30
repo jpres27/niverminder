@@ -12,16 +12,6 @@ import { Image, StyleSheet, Text, View } from "react-native"
 
 export default class Enjoy extends React.Component {
 
-	static navigationOptions = ({ navigation }) => {
-	
-		const { params = {} } = navigation.state
-		return {
-				header: null,
-				headerLeft: null,
-				headerRight: null,
-			}
-	}
-
 	constructor(props) {
 		super(props)
 	}
@@ -33,7 +23,9 @@ export default class Enjoy extends React.Component {
 	render() {
 	
 		return <View
-				style={styles.onboarding3View}>
+				style={styles.onboarding3View}
+					onTouchStart={() => this.props.navigation.navigate('Privacy')}
+					>
 				<View
 					pointerEvents="box-none"
 					style={{
