@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
 	},
 	findCafeFavoriteText: {
 		color: "rgb(41, 41, 41)",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 18,
 		fontStyle: "normal",
 		fontWeight: "normal",
@@ -81,7 +80,6 @@ const styles = StyleSheet.create({
 	},
 	loremIpsumIsSimplText: {
 		color: "rgb(41, 41, 41)",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "normal",

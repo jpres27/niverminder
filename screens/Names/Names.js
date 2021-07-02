@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
 	johnGaltText: {
 		backgroundColor: "transparent",
 		color: "black",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 40,
 		fontStyle: "normal",
 		fontWeight: "normal",
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
 	findHotelFavoriteText: {
 		backgroundColor: "transparent",
 		color: "rgb(41, 41, 41)",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 18,
 		fontStyle: "normal",
 		fontWeight: "normal",
@@ -102,7 +100,6 @@ const styles = StyleSheet.create({
 	loremIpsumIsSimplText: {
 		backgroundColor: "transparent",
 		color: "rgb(41, 41, 41)",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "normal",
@@ -113,7 +110,6 @@ const styles = StyleSheet.create({
 	findBestPlaceText: {
 		backgroundColor: "transparent",
 		color: "white",
-		fontFamily: ".AppleSystemUIFont",
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "normal",

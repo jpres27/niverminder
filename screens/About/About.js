@@ -24,7 +24,7 @@ export default class About extends React.Component {
 
 		return <View
 			style={styles.aboutView}
-			onTouchStart={() => this.props.navigation.navigate('Birthdays')}
+			onTouchStart={() => this.props.navigation.navigate('Privacy')}
 
 			>
 			<View
