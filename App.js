@@ -5,12 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
-import * as Contacts from 'expo-contacts';
 import Splash from './screens/Splash/Splash';
 import About from './screens/About/About';
-import Birthdays from './screens/Birthdays/Birthdays\'';
-import Names from './screens/Names/Names';
-import Enjoy from './screens/Enjoy/Enjoy';
 import Privacy from './screens/Privacy/Privacy';
 
 Notifications.setNotificationHandler({
