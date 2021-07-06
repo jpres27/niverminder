@@ -1,6 +1,6 @@
 //
-//  OnboardingAlt2a
-//  Onboarding-screens-vreedi 25-Jun-2021-125436
+//  Privacy.js
+//  Screen where the user will allow permissions to set notifications for all selected birthdays
 //
 //  Created by [Author].
 //  Copyright © 2018 [Company]. All rights reserved.
@@ -8,9 +8,8 @@
 
 import React from "react"
 import { Image, StyleSheet, Text, View, Button, } from "react-native"
-import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
-import * as Contacts from 'expo-contacts';
+import StorageInterface from "../../StorageInterface";
 
 
 export default class Privacy extends React.Component {
@@ -72,37 +71,36 @@ export default class Privacy extends React.Component {
 	}
 }
 
-async function getBirthdayFromContacts(){
-	//Get Name as well. 
-	console.log("Here");
-   const { status } = await Contacts.requestPermissionsAsync();
-		if (status === 'granted') {
-		  const { data } = await Contacts.getContactsAsync({
-			fields: [Contacts.Fields.Birthday],
-		  });
-  
-		  return data
+//Returns an array of Contact objects from storage
+async function getAllBirthdayFromStorage() {
+	const { data } = await StorageInterface.getAll()
+	return data
+}
+
+//Takes all of the Contact objects in storage and sets up a birthday notification for each of them
+async function schedulePushNotification() {
+	//Get all contacts from storage
+	let birthdays = await getAllBirthdayFromStorage(); //[new Date(), new Date(), new Date()]
+	//Iterate across the contacts and for each set up a notification
+	birthdays.map(async (data) => {
+		if (data.birthday) {
+			console.log(data.name + " " + data.birthday)
+			//Sets the trigger for each notification to be the birthday, and then the top of the next hour
+			trigger = new Date(data.birthday + 60 * 60 * 1000);
+			trigger.setMinutes(0);
+			trigger.setSeconds(0);
+			await Notifications.scheduleNotificationAsync({
+				content: {
+					title: "Happy Birthday 📬" + data.name,
+					body: 'Remember to call',
+					data: { data: 'goes here' },
+				},
+				trigger,
+			});
 		}
-  }
-  
-  async function schedulePushNotification() {
-	  let birthdays = await getBirthdayFromContacts(); //[new Date(), new Date(), new Date()]
-	  birthdays.map(async(data)=>{
-		if(data.birthday){
-		console.log(data.name+" "+data.birthday)
-		//Notifications of IOS 
-		  await Notifications.scheduleNotificationAsync({
-		  content: {
-			title: "Happy Birthday 📬"+data.name,
-			body: 'Remember to call',
-			data: { data: 'goes here' },
-		  },
-		  trigger: {seconds : 2},
-		});
-		}
-	  });
-	  
-  }
+	});
+
+}
 
 
 const styles = StyleSheet.create({

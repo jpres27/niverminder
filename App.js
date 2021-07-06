@@ -7,7 +7,10 @@ import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import Splash from './screens/Splash/Splash';
 import About from './screens/About/About';
+import Birthdays from './screens/Birthdays/Birthdays\'';
 import Privacy from './screens/Privacy/Privacy';
+import SearchContacts from './screens/SearchContacts/SearchContacts';
+
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -24,7 +27,6 @@ export default function App() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-  
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
@@ -48,7 +50,9 @@ export default function App() {
       <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="Birthdays" component={Birthdays} />
         <Stack.Screen name="Privacy" component={Privacy} />
+        <Stack.Screen name="SearchContacts" component={SearchContacts} />
       </Stack.Navigator>
     </NavigationContainer>
   );

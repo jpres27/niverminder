@@ -1,9 +1,9 @@
 //
-//  OnboardingAlt3a
-//  Onboarding-screens-vreedi 25-Jun-2021-125436
+//  About.js
+//  Info dump about the app for the user
 //
-//  Created by [Author].
-//  Copyright © 2018 [Company]. All rights reserved.
+//  Created by Cesar Montalverne and John Presley
+// 
 //
 
 import React from "react"
@@ -24,7 +24,7 @@ export default class About extends React.Component {
 
 		return <View
 			style={styles.aboutView}
-			onTouchStart={() => this.props.navigation.navigate('Privacy')}
+			onTouchStart={() => this.props.navigation.navigate('Birthdays')}
 
 			>
 			<View

@@ -7,7 +7,7 @@
 //
 
 import React from "react"
-import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native"
+import { Image, StyleSheet, Text, View, Button } from "react-native"
 
 
 export default class Birthdays extends React.Component {
@@ -24,7 +24,7 @@ export default class Birthdays extends React.Component {
 
 		return <View
 			style={styles.birthdaysView}
-			onTouchStart={() => this.props.navigation.navigate('Names')}
+			onTouchStart={() => this.props.navigation.navigate('Privacy')}//Names
 			>
 			<View
 				pointerEvents="box-none"
@@ -58,13 +58,12 @@ export default class Birthdays extends React.Component {
 					style={{
 						flex: 1,
 					}} />
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => this.props.navigation.navigate('Details')}
-				>
-					<Text
-						style={styles.findBestPlaceText}>GO TO CONTACTS</Text>
-				</TouchableOpacity>
+				<Button
+  						onPress= {()=>this.props.navigation.navigate('SearchContacts')}
+  						title="Privacy Policy"
+  						color="#841584"
+  						//accessibilityLabel="Learn more"
+					/>
 			</View>
 		</View>
 	}

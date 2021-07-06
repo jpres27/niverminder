@@ -1,9 +1,9 @@
 //
-//  OnboardingAlt1a
-//  Onboarding-screens-vreedi 25-Jun-2021-125436
+//  Splash.js
+//  Logo screen
 //
-//  Created by [Author].
-//  Copyright © 2018 [Company]. All rights reserved.
+//  Created by Cesar Montalverne and John Presley.
+// 
 //
 
 import React from "react"
