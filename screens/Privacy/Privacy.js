@@ -2,9 +2,8 @@
 //  Privacy.js
 //  Screen where the user will allow permissions to set notifications for all selected birthdays
 //
-//  Created by [Author].
-//  Copyright © 2018 [Company]. All rights reserved.
-//
+//  Created by John Presley and Cesar Montalverne.
+
 
 import React from "react"
 import { Image, StyleSheet, Text, View, Button, } from "react-native"
@@ -51,13 +50,13 @@ export default class Privacy extends React.Component {
 					alignItems: "center",
 				}}>
 				<Text
-					style={styles.loremIpsumIsSimplText}>NiverMinder uses  your contact list to check  birthday info and doesn’t save anything, but we would like to collect anonymous usage statistics.</Text>
+					style={styles.loremIpsumIsSimplText}>Niverminder about text goes here</Text>
 				<View
 					style={{
 						flex: 1,
 					}} />
 				<Text
-					style={styles.findBestPlaceText}>Privacy Policy</Text>
+					style={styles.findBestPlaceText}>Press to schedule notifications</Text>
 				<Button
 					title="Press to schedule a notification"
 					onPress={async () => {
@@ -66,7 +65,7 @@ export default class Privacy extends React.Component {
 				/>
 			</View>
 			<Text
-				style={styles.findHotelFavoriteText}>Privacy Policy</Text>
+				style={styles.findHotelFavoriteText}></Text>
 		</View>
 	}
 }
