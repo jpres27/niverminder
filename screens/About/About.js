@@ -26,34 +26,18 @@ export default class About extends React.Component {
 			style={styles.aboutView}
 			onTouchStart={() => this.props.navigation.navigate('Birthdays')}
 
-			>
+		>
+
+<Image
+				source={require("./../../assets/images/onboarding-alt-3a-background-mask.png")}
+				style={styles.aboutBackgroundMaskImage} />
+
 			<View
-				pointerEvents="box-none"
-				style={{
-					position: "absolute",
-					left: 0,
-					right: 0,
-					top: 0,
-					bottom: 0,
-					justifyContent: "center",
-				}}>
-				<Image
-					source={require("./../../assets/images/onboarding-alt-3a-background-mask.png")}
-					style={styles.aboutBackgroundMaskImage} />
-			</View>
-			<View
-				pointerEvents="box-none"
-				style={{
-					position: "absolute",
-					left: 19,
-					right: 13,
-					top: 378,
-					height: 99,
-				}}>
+			style={styles.overlay}>
 				<Text
-					style={styles.flavorText}>What We Do?</Text>
+					style={styles.flavorText}>What Do We Do?</Text>
 				<Text
-					style={styles.simpleText}>NiverMinder will send a birthday message to everyone with a filled  birthday field in you contacts list</Text>
+					style={styles.simpleText}>NiverMinder allows you to import people from your contacts, set birthdays for them, and schedule reminders so that you will never forget to wish your friends and family happy birthdays again.</Text>
 			</View>
 
 		</View>
@@ -70,6 +54,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 		width: null,
 		height: 640,
+		zIndex: -1,
 	},
 	flavorText: {
 		color: "rgb(41, 41, 41)",
@@ -79,27 +64,31 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		backgroundColor: "transparent",
 		alignSelf: "center",
-		flex: 1,
-		justifyContent: 'flex-end',
+		padding: 10,
 	},
 	simpleText: {
-		backgroundColor: "transparent",
 		color: "rgb(41, 41, 41)",
+		width: "100%",
+		minHeight: 70,
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "normal",
 		textAlign: "center",
 		lineHeight: 24,
-		marginTop: 6,
-		flex: 1,
-		justifyContent: 'flex-end',
+		marginTop: 30,
+		marginBottom: 50,
+		flexWrap: "wrap",
+		padding: 10,
 	},
-	findBestPlaceText: {
-		backgroundColor: "transparent",
-		color: "white",
-		fontSize: 16,
-		fontStyle: "normal",
-		fontWeight: "normal",
-		textAlign: "center",
+
+	overlay: {
+		position: "absolute",
+		width: "100%",
+		height: "100%",
+		flex: 1,
+		left: 0,
+		top: 0,
+		flexDirection: "column",
+		justifyContent: "flex-end",
 	}
 })

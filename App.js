@@ -1,4 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
+//
+//  App.js
+//  App file for Niverminder, contains navigation and implementation of some push notification functionality
+//
+//  Created by John Presley and Cesar Montalverne.
+
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,9 +13,8 @@ import * as Notifications from 'expo-notifications';
 import Splash from './screens/Splash/Splash';
 import About from './screens/About/About';
 import Birthdays from './screens/Birthdays/Birthdays\'';
-import Privacy from './screens/Privacy/Privacy';
+import ScheduleReminders from './screens/ScheduleReminders/ScheduleReminders';
 import SearchContacts from './screens/SearchContacts/SearchContacts';
-
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -51,7 +55,7 @@ export default function App() {
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Birthdays" component={Birthdays} />
-        <Stack.Screen name="Privacy" component={Privacy} />
+        <Stack.Screen name="ScheduleReminders" component={ScheduleReminders} />
         <Stack.Screen name="SearchContacts" component={SearchContacts} />
       </Stack.Navigator>
     </NavigationContainer>

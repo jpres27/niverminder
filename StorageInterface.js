@@ -8,9 +8,9 @@ import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Button } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
-export default class StorageInterface {
+const KEYARRAYID = 'KEYARRAYID';
 
-  KEYARRAYID = 'KEYARRAYID'
+export default class StorageInterface {
 
   static async save(key, value) {
     await SecureStore.setItemAsync(key, value);

@@ -6,12 +6,12 @@
 
 
 import React from "react"
-import { Image, StyleSheet, Text, View, Button, } from "react-native"
+import { Image, StyleSheet, Text, View, Button, TouchableOpacity, } from "react-native"
 import * as Notifications from 'expo-notifications';
 import StorageInterface from "../../StorageInterface";
 
 
-export default class Privacy extends React.Component {
+export default class ScheduleReminders extends React.Component {
 
 	constructor(props) {
 		super(props)
@@ -23,49 +23,21 @@ export default class Privacy extends React.Component {
 
 	render() {
 
-		return <View
-			style={styles.onboardingAlt2aView}>
-			<View
-				pointerEvents="box-none"
-				style={{
-					position: "absolute",
-					left: 0,
-					right: 0,
-					top: 0,
-					bottom: 0,
-					justifyContent: "center",
-				}}>
-				<Image
-					source={require("./../../assets/images/onboarding-alt-2a-background-mask.png")}
-					style={styles.onboardingAlt2aBackgroundMaskImage} />
-			</View>
-			<View
-				pointerEvents="box-none"
-				style={{
-					position: "absolute",
-					left: 14,
-					right: 18,
-					top: 385,
-					bottom: 81,
-					alignItems: "center",
-				}}>
-				<Text
-					style={styles.loremIpsumIsSimplText}>Niverminder about text goes here</Text>
-				<View
-					style={{
-						flex: 1,
-					}} />
-				<Text
-					style={styles.findBestPlaceText}>Press to schedule notifications</Text>
-				<Button
-					title="Press to schedule a notification"
-					onPress={async () => {
-						await schedulePushNotification();
-					}}
-				/>
-			</View>
+		return <View>
+			<Image style={styles.onboardingAlt2aBackgroundMaskImage}
+				source={require("./../../assets/images/onboarding-alt-2a-background-mask.png")}
+				style={styles.onboardingAlt2aBackgroundMaskImage} />
+			<View style={styles.overlay}>
 			<Text
-				style={styles.findHotelFavoriteText}></Text>
+				style={styles.loremIpsumIsSimplText}>Now Niverminder can schedule notifications for all of the birthdays you have selected</Text>
+			<TouchableOpacity 
+				style={styles.buttonStyle}
+				onPress={async () => {
+				await schedulePushNotification();
+			}}>
+				<Text>Schedule Reminders</Text>
+			</TouchableOpacity>
+			</View>
 		</View>
 	}
 }
@@ -104,7 +76,6 @@ async function schedulePushNotification() {
 
 const styles = StyleSheet.create({
 	onboardingAlt2aView: {
-		backgroundColor: "white",
 		flex: 1,
 	},
 	onboardingAlt2aBackgroundMaskImage: {
@@ -112,6 +83,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 		width: null,
 		height: 640,
+		zIndex: -1,
 	},
 	loremIpsumIsSimplText: {
 		color: "rgb(41, 41, 41)",
@@ -120,36 +92,31 @@ const styles = StyleSheet.create({
 		fontWeight: "normal",
 		textAlign: "center",
 		lineHeight: 24,
-		backgroundColor: "transparent",
 		alignSelf: "stretch",
+		minHeight: 60,
+		marginLeft: 10,
+		marginRight: 10,
+		marginBottom: 30,
 	},
-	findBestPlaceText: {
-		color: "white",
-		fontSize: 16,
-		fontStyle: "normal",
-		fontWeight: "normal",
-		textAlign: "center",
-		backgroundColor: "transparent",
-		marginBottom: 11,
-	},
-	loremIpsumIsSimplTwoText: {
-		backgroundColor: "transparent",
-		color: "rgb(41, 41, 41)",
-		fontSize: 16,
-		fontStyle: "normal",
-		fontWeight: "normal",
-		textAlign: "center",
-		lineHeight: 24,
-	},
-	findHotelFavoriteText: {
-		color: "rgb(41, 41, 41)",
-		fontSize: 18,
-		fontStyle: "normal",
-		fontWeight: "normal",
-		textAlign: "center",
-		backgroundColor: "transparent",
+	overlay: {
 		position: "absolute",
-		right: 117,
-		top: 365,
+		width: "100%",
+		height: "100%",
+		flex: 1,
+		left: 0,
+		top: 0,
+		flexDirection: "column",
+		justifyContent: "flex-end",
 	},
+	buttonStyle: {
+		backgroundColor: "rgb(87, 107, 245)",
+		marginBottom: 50,
+		alignItems: "center",
+		minHeight: 50,
+		justifyContent: "center",
+		marginLeft: 22,
+		marginRight: 22,
+		marginBottom: 50,
+		borderRadius: 5,
+	}
 })
