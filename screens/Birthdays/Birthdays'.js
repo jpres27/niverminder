@@ -75,10 +75,13 @@ const styles = StyleSheet.create({
 		alignSelf: "flex-end",
 		marginTop: 6,
 		marginBottom: 20,
+		marginRight: 15,
+		marginLeft: 15,
 		padding: 5,
 	},
 	buttonStyle: {
 		backgroundColor: "rgb(87, 107, 245)",
+		color: "white",
 		marginBottom: 50,
 		alignItems: "center",
 		minHeight: 50,
