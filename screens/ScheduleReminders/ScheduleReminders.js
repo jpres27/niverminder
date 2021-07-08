@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
 	},
 	buttonStyle: {
 		backgroundColor: "rgb(87, 107, 245)",
-		color: "white",
 		marginBottom: 50,
 		alignItems: "center",
 		minHeight: 50,

@@ -12,9 +12,10 @@ import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import Splash from './screens/Splash/Splash';
 import About from './screens/About/About';
-import Birthdays from './screens/Birthdays/Birthdays\'';
+import Birthdays from './screens/Birthdays/Birthdays';
 import ScheduleReminders from './screens/ScheduleReminders/ScheduleReminders';
 import SearchContacts from './screens/SearchContacts/SearchContacts';
+import AddBirthday from './screens/AddBirthday/AddBirthday';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -57,6 +58,7 @@ export default function App() {
         <Stack.Screen name="Birthdays" component={Birthdays} />
         <Stack.Screen name="ScheduleReminders" component={ScheduleReminders} />
         <Stack.Screen name="SearchContacts" component={SearchContacts} />
+        <Stack.Screen name="AddBirthday" component={AddBirthday} />
       </Stack.Navigator>
     </NavigationContainer>
   );

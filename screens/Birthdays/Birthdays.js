@@ -39,6 +39,11 @@ export default class Birthdays extends React.Component {
 					style={styles.buttonStyle}>
 					<Text>Select Contacts</Text>
 				</TouchableOpacity>
+				<TouchableOpacity
+					onPress= {()=>this.props.navigation.navigate('AddBirthday')}
+					style={styles.buttonStyle}>
+					<Text>Add Birthdays</Text>
+				</TouchableOpacity>
 			</View>
 		</View>
 	}
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		marginLeft: 22,
 		marginRight: 22,
-		marginBottom: 50,
+		marginBottom: 25,
 		borderRadius: 5,
 	},
 	overlay: {

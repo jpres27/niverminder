@@ -3,14 +3,30 @@
 // 
 //
 //  Created by Cesar Montalverne.
-
 import React from 'react';
 import {StyleSheet,Text,View,TextInput,FlatList, TouchableOpacity} from 'react-native';
 import * as Contacts from 'expo-contacts';
+import AddBirthday from '../AddBirthday/AddBirthday';
+import { createStore } from 'redux';
+import InstanceInfo from '../../Components/InstanceInfo';
+import {Provider} from 'react-redux'
+const types = {
+  SELECT:"SELECT"
+}
+const reducer = (state, action) => {
+  if (action.type === types.SELECT) {
+    return { name : 'other' };
+  }
+  return state;
+};
+// Define the initial state of our store
+const initialState = { name: '' };
+*/
+//const store = createStore(reducer,initialState)
 
 export default class SearchContacts extends React.Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             contacts:[]
         }
@@ -21,8 +37,8 @@ export default class SearchContacts extends React.Component {
 		  return;
 		}
 		const { data } = await Contacts.getContactsAsync({
-		  fields: [Contacts.Fields.PhoneNumbers]
-		});
+      fields: [Contacts.Fields.PhoneNumbers, Contacts.Fields.Birthday]
+    });
 		this.setState({contacts: data, inMemoryContacts: data});
     }
     componentDidMount() {
@@ -38,13 +54,20 @@ export default class SearchContacts extends React.Component {
             //accessibilityLabel="Learn more"
         />
         */}
-        <TouchableOpacity 
-        style = {styles.namesStyles}
-        onPress = {()=>this.props.navigation.navigate('Birthday')}>
+        <TouchableOpacity
+        onPress = {()=>this.props.navigation.navigate('AddBirthday',
+        {firstName:JSON.stringify(item.firstName), 
+        lastName:JSON.stringify(item.lastName),
+        phoneNumber:JSON.stringify(item.phoneNumbers && item.phoneNumbers[0] && item.phoneNumbers[0].number)
+        })}>
             <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>
             {item.firstName + ' '}
             {item.lastName}</Text>
+            {/*<Text>{typeof(item.Birthday)}</Text>*/}
         </TouchableOpacity>
+        {/*<Provider store = {store}>
+          <InstanceInfo message={item.lastName?(item.firstName+' '+ item.lastName):item.firstName}/>
+      </Provider>*/}
       </View>
     )
     findContacts = value => {
@@ -57,25 +80,27 @@ export default class SearchContacts extends React.Component {
 	  };
     render() {
 		return (
-            <View style={{flex:1}}>
-                <TextInput
-                    style = {styles.textInputStyle}
-                    placeholder = "Search Name"
-                    placeholderTextColor = "black"
-                    onChangeText={value => this.findContacts(value)}
-                    />
-                <View style={{flex:1, backgroundColor:'light-grey'}}>
-                    <FlatList
-                        data = {this.state.contacts}
-                        renderItem = {this.renderItem}
-                        ListEmptyComponent={() => (
-                            <View style={{flex: 1, padding: 15}}>
-                              <Text style={{ color: 'black' }}>No Contacts Found</Text>
-                            </View>
-                          )}
-                    ></FlatList>
-                </View>
-            </View>
+      <View style={{flex:1}}>
+          {/*<AddBirthday message = "hello"></AddBirthday>*/}
+
+          <TextInput
+              style = {styles.textInputStyle}
+              placeholder = "Search Name"
+              placeholderTextColor = "black"
+              onChangeText={value => this.findContacts(value)}
+              />
+          <View style={{flex:1, backgroundColor:'light-grey'}}>
+              <FlatList
+                  data = {this.state.contacts}
+                  renderItem = {this.renderItem}
+                  ListEmptyComponent={() => (
+                      <View style={{flex: 1, padding: 15}}>
+                        <Text style={{ color: 'black' }}>No Contacts Found</Text>
+                      </View>
+                    )}
+              ></FlatList>
+          </View>
+      </View>
         )
     }
 }
