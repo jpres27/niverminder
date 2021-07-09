@@ -44,8 +44,8 @@ export default class ScheduleReminders extends React.Component {
 
 //Returns an array of Contact objects from storage
 async function getAllBirthdayFromStorage() {
-	const { data } = await StorageInterface.getAll()
-	return data
+	return await StorageInterface.getAll()
+	 
 }
 
 //Takes all of the Contact objects in storage and sets up a birthday notification for each of them
@@ -57,7 +57,11 @@ async function schedulePushNotification() {
 		if (data.birthday) {
 			console.log(data.name + " " + data.birthday)
 			//Sets the trigger for each notification to be the birthday, and then the top of the next hour
-			trigger = new Date(data.birthday + 60 * 60 * 1000);
+			const datePattern = /(\d{1,2})\/(\d{1,2})\/(\d{4})/;
+			const extractDate = datePattern.exec(data.birthday);
+			curYear = new Date().getFullYear()
+			newDate = new Date(curYear, extractDate[1], extractDate[2])
+			trigger = new Date(newDate + 60 * 60 * 1000);
 			trigger.setMinutes(0);
 			trigger.setSeconds(0);
 			await Notifications.scheduleNotificationAsync({

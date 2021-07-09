@@ -6,7 +6,8 @@
 import React from 'react';
 import {StyleSheet,Text,View,TextInput,FlatList, TouchableOpacity} from 'react-native';
 import * as Contacts from 'expo-contacts';
-import AddBirthday from '../AddBirthday/AddBirthday';
+import StorageInterface from '../../StorageInterface';
+/*import AddBirthday from '../AddBirthday/AddBirthday';
 import { createStore } from 'redux';
 import InstanceInfo from '../../Components/InstanceInfo';
 import {Provider} from 'react-redux'
@@ -58,6 +59,7 @@ export default class SearchContacts extends React.Component {
         onPress = {()=>this.props.navigation.navigate('AddBirthday',
         {firstName:JSON.stringify(item.firstName), 
         lastName:JSON.stringify(item.lastName),
+        id:JSON.stringify(item.id),
         phoneNumber:JSON.stringify(item.phoneNumbers && item.phoneNumbers[0] && item.phoneNumbers[0].number)
         })}>
             <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>

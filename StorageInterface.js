@@ -13,8 +13,9 @@ const KEYARRAYID = 'KEYARRAYID';
 export default class StorageInterface {
 
   static async save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-    this.storeNewKey(key)
+    console.log(value + " is saved")
+    await SecureStore.setItemAsync(key, JSON.stringify(value));
+    await this.storeNewKey(key)
   }
 
   static async getValueFor(key) {
@@ -22,13 +23,15 @@ export default class StorageInterface {
     if (!result) {
       alert('No values stored under that key.');
     }
-    return result 
+    return JSON.parse(result)
   }
 
   static async getAll() {
-    let allKeys = this.getValueFor(KEYARRAYID)
-    let allVals = allKeys.map(key => getValueFor(key));
-    return allVals;
+    let allKeys = await this.getValueFor(KEYARRAYID)
+    console.log("All keys: " + allKeys)
+    //let allVals = allKeys.map(key => this.getValueFor(key));
+    //return allVals;
+    return Promise.all(allKeys.map(key => this.getValueFor(key)));
   }
 
   static async deleteItem(key) {
@@ -43,20 +46,15 @@ export default class StorageInterface {
 
   static async storeNewKey(key) {
     //check to see if key keyArray is available. (Get keyArray) from secure
-    let result = await SecureStore.getItemAsync(KEYARRAYID)
+    let result = await SecureStore.getItemAsync(KEYARRAYID);
     //check to see if key keyArray is available. (Get keyArray) from secure
-    if (result != null) {
-      //If None
-      //Add key (to array)
-      //Store new array in storage
-
-      SecureStore.save(KEYARRAYID, result.push(key))
+    if (Array.isArray(result) || result != 2) {
+      await SecureStore.setItemAsync(KEYARRAYID, JSON.stringify(result.push(key)))
     } else {
-      SecureStore.save(KEYARRAYID, [key])
+      SecureStore.setItemAsync(KEYARRAYID, JSON.stringify([key]))
     }
+
+
+
   }
-
-
-
-
 }

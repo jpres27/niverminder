@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Birthday reminder service",
+    "githubUrl": "https://github.com/jpres27/niverminder"
   }
 }
