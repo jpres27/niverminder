@@ -7,7 +7,7 @@
 //
 
 import React from "react"
-import { Image, StyleSheet, Text, View } from "react-native"
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native"
 
 
 export default class Splash extends React.Component {
@@ -23,12 +23,18 @@ export default class Splash extends React.Component {
 	render() {
 
 		return <View
-		onTouchStart={() => this.props.navigation.navigate('About')}>
-			
-				<Image
-					source={require("./../../assets/images/splashscreenimage.jpg")}
-					style={styles.splashBackgroundMaskImage} />
-</View>
+			onTouchStart={() => this.props.navigation.navigate('About')}>
+
+			<Image
+				source={require("./../../assets/images/splashscreenimage.jpg")}
+				style={styles.splashBackgroundMaskImage} />
+
+
+
+		</View>
+
+
+
 	}
 }
 
@@ -38,5 +44,16 @@ const styles = StyleSheet.create({
 		resizeMode: "cover",
 		width: null,
 		height: 640,
-	}
+	},
+	buttonStyle: {
+		backgroundColor: "rgb(87, 107, 245)",
+		color: "white",
+		marginBottom: 25,
+		alignItems: "center",
+		minHeight: 50,
+		justifyContent: "center",
+		marginLeft: 22,
+		marginRight: 22,
+		borderRadius: 5,
+	},
 })

@@ -7,7 +7,8 @@
 //
 
 import React from "react"
-import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native"
+import { Image, StyleSheet, Text, View, TouchableOpacity, Linking } from "react-native"
+import * as WebBrowser from 'expo-web-browser';
 
 
 export default class About extends React.Component {
@@ -28,17 +29,27 @@ export default class About extends React.Component {
 
 		>
 
-<Image
+			<Image
 				source={require("./../../assets/images/onboarding-alt-3a-background-mask.png")}
 				style={styles.aboutBackgroundMaskImage} />
 
 			<View
-			style={styles.overlay}>
+				style={styles.overlay}>
 				<Text
 					style={styles.flavorText}>What Do We Do?</Text>
 				<Text
 					style={styles.simpleText}>NiverMinder allows you to import people from your contacts, set birthdays for them, and schedule reminders so that you will never forget to wish your friends and family happy birthdays again.</Text>
 			</View>
+
+
+
+			<TouchableOpacity
+				onPress={() => WebBrowser.openBrowserAsync('https://jpres27.github.io/')}
+				style={styles.buttonStyle}
+
+			>
+				<Text>Privacy Policy</Text>
+			</TouchableOpacity>
 
 		</View>
 	}
@@ -64,7 +75,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		backgroundColor: "transparent",
 		alignSelf: "center",
-		padding: 10,
+		padding: 15,
 	},
 	simpleText: {
 		color: "rgb(41, 41, 41)",
@@ -90,5 +101,16 @@ const styles = StyleSheet.create({
 		top: 0,
 		flexDirection: "column",
 		justifyContent: "flex-end",
-	}
+	},
+	buttonStyle: {
+		backgroundColor: "rgb(87, 107, 245)",
+		color: "white",
+		marginBottom: 50,
+		alignItems: "center",
+		minHeight: 30,
+		justifyContent: "center",
+		marginLeft: 22,
+		marginRight: 22,
+		borderRadius: 5,
+	},
 })

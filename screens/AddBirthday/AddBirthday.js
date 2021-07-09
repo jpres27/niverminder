@@ -16,7 +16,7 @@ export default class AddBirthday extends React.Component {
     super()
     this.info = props.route.params;
     this.firstName = this.info ? this.info.firstName.replace(/["]+/g, '') : '';
-    this.lastName = this.info ? this.info.lastName.replace(/["]+/g, '') : '';
+    this.lastName = this.info ? (this.info.lastName ? this.info.lastName.replace(/["]+/g, '') : '') : '';
     this.phoneNumber = this.info ? (this.info.phoneNumber ? this.info.phoneNumber.replace(/["]+/g, '') : '') : '';
     this.id = this.info ? (this.info.id) : ""
     this.state = {name : this.firstName + " " + this.lastName, birthday : "", number : this.phoneNumber}

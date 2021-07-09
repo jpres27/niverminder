@@ -61,6 +61,11 @@ async function schedulePushNotification() {
 			const extractDate = datePattern.exec(data.birthday);
 			curYear = new Date().getFullYear()
 			newDate = new Date(curYear, extractDate[1], extractDate[2])
+			currentDate = new Date()
+			if(newDate.getTime() < currentDate.getTime()) {
+				curYear++
+				newDate = new Date(curYear, extractDate[1], extractDate[2])
+			}
 			trigger = new Date(newDate + 60 * 60 * 1000);
 			trigger.setMinutes(0);
 			trigger.setSeconds(0);

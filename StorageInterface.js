@@ -46,12 +46,17 @@ export default class StorageInterface {
 
   static async storeNewKey(key) {
     //check to see if key keyArray is available. (Get keyArray) from secure
-    let result = await SecureStore.getItemAsync(KEYARRAYID);
+    let result = JSON.parse(await SecureStore.getItemAsync(KEYARRAYID));
     //check to see if key keyArray is available. (Get keyArray) from secure
-    if (Array.isArray(result) || result != 2) {
-      await SecureStore.setItemAsync(KEYARRAYID, JSON.stringify(result.push(key)))
+    if (Array.isArray(result)) {
+      result.push(key)
+      await SecureStore.setItemAsync(KEYARRAYID, JSON.stringify(result))
+      console.log(JSON.stringify(result))
     } else {
-      SecureStore.setItemAsync(KEYARRAYID, JSON.stringify([key]))
+      await SecureStore.deleteItemAsync(KEYARRAYID);
+      masterIndex = [key]
+      await SecureStore.setItemAsync(KEYARRAYID, JSON.stringify(masterIndex))
+      console.log(masterIndex)
     }
 
 
