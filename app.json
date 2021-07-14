@@ -20,11 +20,11 @@
       "supportsTablet": true
     },
     "android": {
+      "package" : "com.jpp8968.niverminder",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.jpp8968.niverminder"
+           }
     },
     "web": {
       "favicon": "./assets/favicon.png"

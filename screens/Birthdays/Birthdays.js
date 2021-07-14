@@ -34,6 +34,7 @@ export default class Birthdays extends React.Component {
 					style={styles.flavorText}>Import Contacts</Text>
 				<Text
 					style={styles.simpleText}>Choose from your list of contacts the people for whom you would like to add birthdays and receive reminders.</Text>
+				{/*}
 				<TouchableOpacity
 					onPress={() => this.props.navigation.navigate('SearchContacts')}
 					style={styles.buttonStyle}>
@@ -44,6 +45,7 @@ export default class Birthdays extends React.Component {
 					style={styles.buttonStyle}>
 					<Text>Add Birthdays</Text>
 				</TouchableOpacity>
+	*/}
 			</View>
 		</View>
 	}
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
 		lineHeight: 24,
 		alignSelf: "flex-end",
 		marginTop: 6,
-		marginBottom: 20,
+		marginBottom: 100,
 		marginRight: 15,
 		marginLeft: 15,
 		padding: 5,

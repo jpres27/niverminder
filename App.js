@@ -16,6 +16,8 @@ import Birthdays from './screens/Birthdays/Birthdays';
 import ScheduleReminders from './screens/ScheduleReminders/ScheduleReminders';
 import SearchContacts from './screens/SearchContacts/SearchContacts';
 import AddBirthday from './screens/AddBirthday/AddBirthday';
+import Main from './screens/Main/Main';
+
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -52,13 +54,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
+      <Stack.Navigator initialRouteName="Main">
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Birthdays" component={Birthdays} />
         <Stack.Screen name="ScheduleReminders" component={ScheduleReminders} />
         <Stack.Screen name="SearchContacts" component={SearchContacts} />
         <Stack.Screen name="AddBirthday" component={AddBirthday} />
+        <Stack.Screen name="Main" component={Main} />
       </Stack.Navigator>
     </NavigationContainer>
   );

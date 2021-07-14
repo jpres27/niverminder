@@ -4,7 +4,7 @@
 //
 //  Created by Cesar Montalverne.
 import React from 'react';
-import {StyleSheet,Text,View,TextInput,FlatList, TouchableOpacity} from 'react-native';
+import {StyleSheet,Text,View,TextInput,FlatList, TouchableOpacity, TouchableWithoutFeedbackBase} from 'react-native';
 import * as Contacts from 'expo-contacts';
 import StorageInterface from '../../StorageInterface';
 /*import AddBirthday from '../AddBirthday/AddBirthday';
@@ -29,7 +29,8 @@ export default class SearchContacts extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            contacts:[]
+            contacts:[],
+            searchAlign:'center'
         }
     }
     loadContacts = async () => {
@@ -74,24 +75,40 @@ export default class SearchContacts extends React.Component {
     )
     findContacts = value => {
 		const filteredContacts = this.state.inMemoryContacts.filter(contact => {
-		  let contactLowercase = (contact.firstName +' ' +contact.lastName).toLowerCase();
+		  let contactLowercaseFirst = contact.firstName?contact.firstName.toLowerCase():'';
+      let contactLowercaseLast = contact.lastName?contact.lastName.toLowerCase():'';
 		  let searchContactLowercase = value.toLowerCase();
-		  return contactLowercase.indexOf(searchContactLowercase) > -1;
+		  return contactLowercaseFirst.indexOf(searchContactLowercase)==0||contactLowercaseLast.indexOf(searchContactLowercase)==0;
 		});
-		this.setState({ contacts: filteredContacts });
+		this.setState({ contacts: filteredContacts, searchAlign:'left' });
 	  };
+    searchAlignLeft = ()=>{
+      this.setState({searchAlign:'left' })
+    }
     render() {
 		return (
       <View style={{flex:1}}>
           {/*<AddBirthday message = "hello"></AddBirthday>*/}
-
+          <View style={{padding:15, backgroundColor:"white"}}>
           <TextInput
-              style = {styles.textInputStyle}
+              //inlineImageLeft = "../../node_modules\drawable/search.png"
               placeholder = "Search Name"
               placeholderTextColor = "black"
               onChangeText={value => this.findContacts(value)}
+              onTouchStart = {()=>this.searchAlignLeft()}
+              style = {{backgroundColor:'white',
+                height:41,
+                fontSize:16,
+                padding:10,
+                color:'black',
+                borderColor:'black',
+                borderWidth:1.5,
+                borderRadius:80,
+                textAlign:this.state.searchAlign
+              }}
               />
-          <View style={{flex:1, backgroundColor:'light-grey'}}>
+            </View>
+          <View style={{flex:1, backgroundColor:'light-grey',marginLeft:15}}>
               <FlatList
                   data = {this.state.contacts}
                   renderItem = {this.renderItem}
@@ -109,12 +126,13 @@ export default class SearchContacts extends React.Component {
 const styles = StyleSheet.create({
     textInputStyle: {
         backgroundColor:'white',
-        height:60,
-        fontSize:30,
+        height:40,
+        fontSize:20,
         padding:10,
         color:'black',
-        borderBottomColor:'black',
-        borderBottomWidth:1.5
-    },
+        borderColor:'black',
+        borderWidth:1.5,
+        borderRadius:128
+      },
     namesStyles: {}
 })

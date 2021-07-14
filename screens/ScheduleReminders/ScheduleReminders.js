@@ -32,11 +32,18 @@ export default class ScheduleReminders extends React.Component {
 				style={styles.loremIpsumIsSimplText}>Now Niverminder can schedule notifications for all of the birthdays you have selected</Text>
 			<TouchableOpacity 
 				style={styles.buttonStyle}
+				onPress={() => {this.props.navigation.navigate('Main')}}>
+						<Text>Get Started!</Text>
+			</TouchableOpacity>
+			{/*}
+			<TouchableOpacity 
+				style={styles.buttonStyle}
 				onPress={async () => {
 				await schedulePushNotification();
 			}}>
-				<Text>Schedule Reminders</Text>
+				<Text>Get Started</Text>
 			</TouchableOpacity>
+			*/}
 			</View>
 		</View>
 	}
