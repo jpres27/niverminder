@@ -6,33 +6,23 @@
 import React from 'react';
 import {StyleSheet,Text,View,TextInput,FlatList, TouchableOpacity, TouchableWithoutFeedbackBase} from 'react-native';
 import * as Contacts from 'expo-contacts';
-import StorageInterface from '../../StorageInterface';
-/*import AddBirthday from '../AddBirthday/AddBirthday';
-import { createStore } from 'redux';
+//import StorageInterface from '../../StorageInterface';
+//import AddBirthday from '../AddBirthday/AddBirthday';
 import InstanceInfo from '../../Components/InstanceInfo';
-import {Provider} from 'react-redux'
-const types = {
-  SELECT:"SELECT"
-}
-const reducer = (state, action) => {
-  if (action.type === types.SELECT) {
-    return { name : 'other' };
-  }
-  return state;
-};
+
 // Define the initial state of our store
-const initialState = { name: '' };
-*/
-//const store = createStore(reducer,initialState)
+//const initialState = { contacts: '' };
 
 export default class SearchContacts extends React.Component {
     constructor(props){
         super(props)
+        //console.log(props.store)
         this.state = {
             contacts:[],
             searchAlign:'center'
         }
     }
+   
     loadContacts = async () => {
         const { status } = await Contacts.requestPermissionsAsync();
 		if (status !== 'granted') {
@@ -46,6 +36,7 @@ export default class SearchContacts extends React.Component {
     componentDidMount() {
 		this.loadContacts();
 	}
+
     renderItem = ({item }) => (
         <View style={{padding: 10,borderBottomWidth:0.2 }}>
         {/*
@@ -56,7 +47,7 @@ export default class SearchContacts extends React.Component {
             //accessibilityLabel="Learn more"
         />
         */}
-        <TouchableOpacity
+        {/*<TouchableOpacity
         onPress = {()=>this.props.navigation.navigate('AddBirthday',
         {firstName:JSON.stringify(item.firstName), 
         lastName:JSON.stringify(item.lastName),
@@ -66,11 +57,9 @@ export default class SearchContacts extends React.Component {
             <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>
             {item.firstName + ' '}
             {item.lastName}</Text>
-            {/*<Text>{typeof(item.Birthday)}</Text>*/}
-        </TouchableOpacity>
-        {/*<Provider store = {store}>
-          <InstanceInfo message={item.lastName?(item.firstName+' '+ item.lastName):item.firstName}/>
-      </Provider>*/}
+            {/*<Text>{typeof(item.Birthday)}</Text>
+        </TouchableOpacity>*/}
+        <InstanceInfo item = {item} navigation = {this.props.navigation}/>
       </View>
     )
     findContacts = value => {

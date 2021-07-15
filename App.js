@@ -17,6 +17,10 @@ import ScheduleReminders from './screens/ScheduleReminders/ScheduleReminders';
 import SearchContacts from './screens/SearchContacts/SearchContacts';
 import AddBirthday from './screens/AddBirthday/AddBirthday';
 import Main from './screens/Main/Main';
+import { createStore } from 'redux';
+import {Provider} from 'react-redux'
+
+
 
 
 Notifications.setNotificationHandler({
@@ -28,6 +32,18 @@ Notifications.setNotificationHandler({
 });
 
 const Stack = createStackNavigator();
+const types = {
+  SELECT:"SELECT"
+}
+const reducer = (state, action) => {
+  if (action.type === types.SELECT) {
+    //console.log('reducer')
+    return { contacts : action.contacts };
+  }
+  return state;
+};
+const initialState = {contacts:''}
+const store = createStore(reducer,initialState)
 
 export default function App() {
   const [expoPushToken, setExpoPushToken] = useState('');
@@ -53,6 +69,7 @@ export default function App() {
   }, []);
 
   return (
+    <Provider store ={store}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Main">
         <Stack.Screen name="Splash" component={Splash} />
@@ -64,6 +81,7 @@ export default function App() {
         <Stack.Screen name="Main" component={Main} />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 

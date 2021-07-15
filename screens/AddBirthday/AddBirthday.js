@@ -14,14 +14,21 @@ import StorageInterface from '../../StorageInterface';
 import SearchContacts from '../SearchContacts/SearchContacts';
 //import InstanceInfo from '../../Components/InstanceInfo';
 import DateTimePicker from '@react-native-community/datetimepicker';//npm install @react-native-community/datetimepicker --save
+import {connect} from 'react-redux'
 
-export default class AddBirthday extends React.Component {
+const date = new Date();
+
+class AddBirthday extends React.Component {
   constructor(props) {
     super(props)
-    this.info = props.route.params;
+  }
+  solvingRender = ()=>{
+    //constructor didn't seem to be called every time the page was accessed.
+    //Led to selecting a contact and not having its info display on the form as expected.
+    this.info = this.props.contacts;
     this.firstName = this.info ? this.info.firstName.replace(/["]+/g, '') : '';
     this.lastName = this.info ? (this.info.lastName ? this.info.lastName.replace(/["]+/g, '') : '') : '';
-    this.phoneNumber = this.info ? (this.info.phoneNumber ? this.info.phoneNumber.replace(/["]+/g, '') : '') : '';
+    this.phoneNumber = this.info ? (this.info.phoneNumbers ? this.info.phoneNumbers[0].number.replace(/["]+/g, '') : '') : '';
     this.id = this.info ? (this.info.id) : ""
     this.state = { name: this.firstName + " " + this.lastName, birthday: new Date(), number: this.phoneNumber, mode: 'date', show: false }
   }
@@ -46,14 +53,12 @@ export default class AddBirthday extends React.Component {
   render() {
     return (
       <View
-        style={{ backgroundColor: 'white', padding: 30 }}
-      >
-        <Text style={{
-          textAlign: 'center',
-          fontSize: 30,
-          marginBottom: 70
-        }}>Personal Information</Text>
-
+        style={{ backgroundColor: 'white', padding: 30 }}>
+        {this.solvingRender()}
+        <Text style={{textAlign:'center',
+        fontSize:30,
+        marginBottom:70
+      }}>Personal Information</Text>
         <Text style={styles.textStyle}>Name</Text>
         <TextInput
           style={styles.fieldStyle}
@@ -75,24 +80,11 @@ export default class AddBirthday extends React.Component {
           }}
         >{this.phoneNumber}
         </TextInput>
-        {/* <Text style={styles.textStyle}>Birthday</Text>
-        <TextInput
-          style={styles.fieldStyle}
-          placeholder="enter birthday"
-          placeholderTextColor="grey"
-          onChangeText={(text) => {
-            this.setState((state) => { return { ...state, birthday: text } }
-            )
-          }}
-        >
-        </TextInput> */}
-
-
 
         <Text style={styles.textStyle}>Birthday</Text>
         <DateTimePicker
           style={styles.fieldStyle}
-
+          maximumDate = {new Date()}
           testID="dateTimePicker"
           value={this.state.birthday}
           mode={this.state.mode}
@@ -103,22 +95,26 @@ export default class AddBirthday extends React.Component {
 
 
 
-        <Button title="select from contacts" onPress={() => this.props.navigation.navigate('SearchContacts')} color='rgb(87, 107, 245)' />
+        <Button title="select from contacts" onPress={() => this.props.navigation.navigate('Main')} color='rgb(87, 107, 245)' />
         <TouchableOpacity
           style={styles.buttonStyle}
           onPress={() => {
             StorageInterface.save(JSON.stringify(Math.random()), this.state)
-            this.props.navigation.navigate("SearchContacts")
+            this.props.navigation.navigate("Main")
           }
           }
         >
           <Text>Remind Me</Text>
         </TouchableOpacity>
       </View>
-
     )
   }
 }
+
+export default connect(
+  (state) => ({contacts:state.contacts})
+)(AddBirthday);
+
 const styles = StyleSheet.create({
   fieldStyle: {
     borderWidth: 3,
@@ -126,8 +122,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginTop: 5,
     fontSize: 20,
-    borderRadius: 5,
-    height: 50,
+    borderRadius:5,
+    height:50,
   },
   textStyle: {
     fontSize: 20

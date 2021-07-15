@@ -17,7 +17,6 @@ export default class StorageInterface {
     await SecureStore.setItemAsync(key, JSON.stringify(value));
     await this.storeNewKey(key)
   }
-
   static async getValueFor(key) {
     let result = await SecureStore.getItemAsync(key);
     if (!result) {
@@ -25,13 +24,10 @@ export default class StorageInterface {
     }
     return JSON.parse(result)
   }
-
   static async getAll() {
     let allKeys = await this.getValueFor(KEYARRAYID)
     console.log("All keys: " + allKeys)
-    //let allVals = allKeys.map(key => this.getValueFor(key));
-    //return allVals;
-    return Promise.all(allKeys.map(key => this.getValueFor(key)));
+    return await Promise.all(allKeys.map(key => this.getValueFor(key)));
   }
 
   static async deleteItem(key) {
@@ -42,8 +38,6 @@ export default class StorageInterface {
       alert('Unable to delete.');
     }
   }
-
-
   static async storeNewKey(key) {
     //check to see if key keyArray is available. (Get keyArray) from secure
     let result = JSON.parse(await SecureStore.getItemAsync(KEYARRAYID));
@@ -58,8 +52,5 @@ export default class StorageInterface {
       await SecureStore.setItemAsync(KEYARRAYID, JSON.stringify(masterIndex))
       console.log(masterIndex)
     }
-
-
-
   }
 }
